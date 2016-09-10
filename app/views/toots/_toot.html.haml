@@ -1,0 +1,7 @@
+.toot
+  .toot-header
+    %span.toot-author= toot.author.name
+    %span.toot-created-at= time_ago_in_words(toot.created_at) + ' ago'
+  .toot-content
+    %span.toot-body= toot.body
+  .toot-footer
