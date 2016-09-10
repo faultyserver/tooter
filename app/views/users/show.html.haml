@@ -1,18 +1,14 @@
-%p#notice= notice
+.row
+  .col-md-4
+    .user
+      .user-handle= @user.handle
+      .user-name= @user.name
+      .user-bio= @user.bio
+    = link_to 'Edit', edit_user_path(@user)
 
-%p
-  %b Handle:
-  = @user.handle
-%p
-  %b Password:
-  = @user.password
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Bio:
-  = @user.bio
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+  .col-md-8
+    .toots
+      - @user.toots.each do |toot|
+        = render 'toots/toot', toot: toot
+

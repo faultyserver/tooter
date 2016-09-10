@@ -1,8 +1,9 @@
-= simple_form_for @user do |f|
+= simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
   = f.input :handle
   = f.input :password
   = f.input :name
   = f.input :bio
 
   .actions
-    = f.button :submit
+    = f.button :submit, value: 'Sign Up!', class: 'btn btn-primary'
+    = link_to 'Cancel', :back, class: 'btn btn-default'
