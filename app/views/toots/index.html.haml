@@ -1,0 +1,23 @@
+%h1 Listing toots
+
+%table
+  %thead
+    %tr
+      %th Body
+      %th Author
+      %th
+      %th
+      %th
+
+  %tbody
+    - @toots.each do |toot|
+      %tr
+        %td= toot.body
+        %td= toot.author
+        %td= link_to 'Show', toot
+        %td= link_to 'Edit', edit_toot_path(toot)
+        %td= link_to 'Destroy', toot, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Toot', new_toot_path

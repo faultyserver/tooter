@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Body:
+  = @toot.body
+%p
+  %b Author:
+  = @toot.author
+
+= link_to 'Edit', edit_toot_path(@toot)
+\|
+= link_to 'Back', toots_path
