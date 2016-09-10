@@ -1,0 +1,17 @@
+.user-box {
+  @include component;
+  padding: 12px;
+
+  .user {
+    .user-name {
+      font-weight: bold;
+      font-size: $font-size-large;
+    }
+    .user-handle {
+      color: $gray-light;
+    }
+    .user-bio {
+      margin-top: 8px;
+    }
+  }
+}

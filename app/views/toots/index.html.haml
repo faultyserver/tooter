@@ -1,2 +1,5 @@
-- @toots.order(created_at: :desc).each do |toot|
-  = render 'toot', toot: toot
+.row
+  .col-md-6.col-md-offset-3
+    .toot-stream
+      - @toots.order(created_at: :desc).each do |toot|
+        = render 'toot', toot: toot

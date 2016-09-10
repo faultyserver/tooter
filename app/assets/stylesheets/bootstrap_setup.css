@@ -1,6 +1,4 @@
+$font-size-base: 16px;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-body {
-  margin-top: 50px;
-}
