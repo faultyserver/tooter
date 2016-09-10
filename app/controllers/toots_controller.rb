@@ -53,6 +53,6 @@ class TootsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def toot_params
-      params.require(:toot).permit(:body, :author_id)
+      params.require(:toot).permit(:body).merge(author_id: current_user.id)
     end
 end
