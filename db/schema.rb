@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910192516) do
+ActiveRecord::Schema.define(version: 20160910213944) do
 
   create_table "toots", force: :cascade do |t|
     t.string   "body",       limit: 200, null: false
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20160910192516) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "handle",     limit: 32,  null: false
-    t.string   "password",               null: false
-    t.string   "name",                   null: false
-    t.string   "bio",        limit: 200, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "handle",          limit: 32,  null: false
+    t.string   "password_digest",             null: false
+    t.string   "name",                        null: false
+    t.string   "bio",             limit: 200, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

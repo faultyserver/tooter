@@ -12,5 +12,11 @@
       = link_to 'New Toot', new_toot_path, class: 'btn btn-default navbar-btn'
 
       .navbar-right
-        = link_to 'Sign Up', new_user_path, class: 'btn btn-primary navbar-btn'
-        = link_to 'Sign In', new_user_path, class: 'btn btn-default navbar-btn'
+        - if current_user
+          %p.navbar-text
+            Toot toot,
+            = link_to current_user.handle, current_user
+          = link_to 'Logout', logout_path, class: 'btn btn-default navbar-btn'
+        - else
+          = link_to 'Sign Up', new_user_path, class: 'btn btn-primary navbar-btn'
+          = link_to 'Sign In', login_path, class: 'btn btn-default navbar-btn'
