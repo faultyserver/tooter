@@ -10,6 +10,8 @@ gem 'puma', '~> 3.0'
 
 # Use HAML for markup
 gem 'haml-rails'
+# Use SimpleForm for nicer form fields
+gem 'simple_form'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use FontAwesome for icons

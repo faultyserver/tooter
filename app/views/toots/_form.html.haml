@@ -1,16 +1,6 @@
-= form_for @toot do |f|
-  - if @toot.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@toot.errors.count, "error")} prohibited this toot from being saved:"
-      %ul
-        - @toot.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @toot do |f|
+  = f.input :body
+  = f.input :author
 
-  .field
-    = f.label :body
-    = f.text_field :body
-  .field
-    = f.label :author
-    = f.text_field :author
   .actions
-    = f.submit 'Save'
+    = f.button :submit
