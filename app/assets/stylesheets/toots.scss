@@ -5,7 +5,8 @@
 .toot {
   width: 100%;
   padding: 6px 12px;
-  border: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  &:last-child { border-bottom: none; }
 
   .toot-header {
     font-size: $font-size-small;
