@@ -104,26 +104,34 @@ describe User, 'validations' do
 end
 
 
-describe User, '#toot_stream' do
-  it 'includes Toots by the user' do
-    user = create(:user)
-    toot = create(:toot, author: user)
+describe User, '#event_stream' do
+  it 'includes toot events by the user' do
+    user  = create(:user)
+    event = create(:toot_event, user: user)
 
-    expect(user.toot_stream).to include(toot)
+    expect(user.event_stream).to include(event)
   end
 
-  it 'includes Favorites by the user' do
-    user      = create(:user)
-    favorite  = create(:favorite, user: user)
+  it 'includes favorite events by the user' do
+    user  = create(:user)
+    event = create(:favorite_event, user: user)
 
-    expect(user.toot_stream).to include(favorite)
+    expect(user.event_stream).to include(event)
+  end
+
+  it 'does not include Events the user did not initiate' do
+    user1  = create(:user)
+    user2  = create(:user)
+    event = create(:event, user: user1, subject: user2)
+
+    expect(user2.event_stream).to be_empty
   end
 
   it 'is ordered by creation date' do
-    user      = create(:user)
-    toot      = create(:toot, author: user)
-    favorite  = create(:favorite, user: user)
+    user    = create(:user)
+    event1  = create(:event, user: user)
+    event2  = create(:event, user: user)
 
-    expect(user.toot_stream).to eq([favorite, toot])
+    expect(user.event_stream).to eq([event2, event1])
   end
 end
