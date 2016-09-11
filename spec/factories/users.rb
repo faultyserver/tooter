@@ -3,7 +3,7 @@ FactoryGirl.define do
     handle    { Faker::Internet.user_name }
     name      { Faker::Name.name }
     password  { Faker::Internet.password }
-    bio       { "#{Faker::Company.title} at #{Faker::Company.name}. #{Faker::Hacker.ingverb} #{Faker::Hacker.noun} with #{Faker::Name.name}" }
+    bio       { "#{Faker::Name.title} at #{Faker::Company.name}. #{Faker::Hacker.ingverb} #{Faker::Hacker.noun} with #{Faker::Name.name}" }
 
     factory :user_with_toots do
       transient{ toot_count 5 }
