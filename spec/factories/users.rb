@@ -12,5 +12,14 @@ FactoryGirl.define do
         create_list(:toot, opts.toot_count, author: user)
       end
     end
+
+
+    factory :user_with_favorites do
+      transient{ favorite_count 5 }
+
+      after(:create) do |user, opts|
+        create_list(:favorite, opts.favorite_count, user: user)
+      end
+    end
   end
 end
