@@ -10,6 +10,6 @@
 
   .col-md-8
     .toot-stream
-      - @user.toots.order(created_at: :desc).each do |toot|
+      - @user.toots.each do |toot|
         = render 'toots/toot', toot: toot
 
