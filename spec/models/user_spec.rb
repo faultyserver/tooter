@@ -102,3 +102,28 @@ describe User, 'validations' do
     end
   end
 end
+
+
+describe User, '#toot_stream' do
+  it 'includes Toots by the user' do
+    user = create(:user)
+    toot = create(:toot, author: user)
+
+    expect(user.toot_stream).to include(toot)
+  end
+
+  it 'includes Favorites by the user' do
+    user      = create(:user)
+    favorite  = create(:favorite, user: user)
+
+    expect(user.toot_stream).to include(favorite)
+  end
+
+  it 'is ordered by creation date' do
+    user      = create(:user)
+    toot      = create(:toot, author: user)
+    favorite  = create(:favorite, user: user)
+
+    expect(user.toot_stream).to eq([favorite, toot])
+  end
+end
