@@ -1,4 +1,8 @@
+require 'support/features/session_helpers.rb'
+
 feature 'Posting toots' do
+  include Features::SessionHelpers
+
   let(:toot_body) { 'toot toot.' }
 
   scenario 'while not signed in' do
@@ -37,16 +41,5 @@ feature 'Posting toots' do
   def expect_toot_success
     expect(page).to have_content(@user.handle)
     expect(page).to have_content(toot_body)
-  end
-
-  def expect_sign_in_request
-    expect(page).to have_current_path(login_path)
-  end
-
-  def sign_in_as handle, password
-    visit login_path
-    fill_in 'Handle',   with: handle
-    fill_in 'Password', with: password
-    click_button 'Login'
   end
 end
