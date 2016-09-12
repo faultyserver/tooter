@@ -49,29 +49,26 @@ end
 
 
 describe User, 'validations' do
-  context 'null requirements' do
-    it 'require `handle` to not be nil' do
+  context '#handle' do
+    it 'must not be nil' do
+      user = build(:user, handle: nil)
+
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'must not be blank' do
       user = build(:user, handle: '')
 
       expect(user.valid?).to be_falsey
     end
 
-    it 'require `password` to not be nil' do
-      user = build(:user, password: '')
+    it 'must be less than 32 characters long' do
+      user = build(:user, handle: 'a'*33)
 
       expect(user.valid?).to be_falsey
     end
 
-    it 'require `name` to not be nil' do
-      user = build(:user, name: '')
-
-      expect(user.valid?).to be_falsey
-    end
-  end
-
-
-  context 'uniqueness requirements' do
-    it 'require `handle` to be unique' do
+    it 'must be unique' do
       first = create(:user, handle: 'faulty')
       second = build(:user, handle: 'faulty')
 
@@ -79,26 +76,59 @@ describe User, 'validations' do
     end
   end
 
+  context '#password' do
+    it 'must not be nil' do
+      user = build(:user, password: nil)
 
-  context 'value requirements' do
-    it 'require `password` to be 8+ characters long' do
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'must be at least 8 characters long' do
       first = build(:user, password: '1234567')
       second = build(:user, password: '12345678')
 
       expect(first.valid?).to   be_falsey
       expect(second.valid?).to  be_truthy
     end
+  end
 
-    it 'require `handle` to not be blank' do
-      user = build(:user, handle: '')
+  context '#name' do
+    it 'must not be nil' do
+      user = build(:user, name: nil)
 
       expect(user.valid?).to be_falsey
     end
 
-    it 'allow `bio` to be blank' do
+    it 'must not be blank' do
+      user = build(:user, name: '')
+
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'must be less than 64 characters long' do
+      user = build(:user, name: 'a'*65)
+
+      expect(user.valid?).to be_falsey
+    end
+  end
+
+  context '#bio' do
+    it 'may be assigned nil' do
+      user = build(:user, bio: nil)
+
+      expect(user.valid?).to be_truthy
+    end
+
+    it 'may be left blank' do
       user = build(:user, bio: '')
 
       expect(user.valid?).to be_truthy
+    end
+
+    it 'must be less than 200 characters long' do
+      user = build(:user, bio: 'a'*201)
+
+      expect(user.valid?).to be_falsey
     end
   end
 end
