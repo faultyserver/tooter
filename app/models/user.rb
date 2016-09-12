@@ -3,10 +3,10 @@ class User < ApplicationRecord
   has_many :events, inverse_of: :user
   has_many :subject_events, class_name: 'Event', as: :subject
 
-  validates_uniqueness_of :handle
-  validates_presence_of :handle, :name, :password
-  validates :bio, length: { in: 0..200 }, allow_nil: false
-  validates :password, length: { minimum: 8 }
+  validates :handle,    length: { in: 1..32   }, allow_nil: false, uniqueness: true
+  validates :name,      length: { in: 1..64   }, allow_nil: false
+  validates :bio,       length: { in: 0..200  }, allow_nil: true
+  validates :password,  length: { minimum: 8  }, allow_nil: false
 
   has_secure_password
 

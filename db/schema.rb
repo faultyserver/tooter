@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911123458) do
+ActiveRecord::Schema.define(version: 20160912183522) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20160911123458) do
   create_table "users", force: :cascade do |t|
     t.string   "handle",          limit: 32,  null: false
     t.string   "password_digest",             null: false
-    t.string   "name",                        null: false
-    t.string   "bio",             limit: 200, null: false
+    t.string   "name",            limit: 64,  null: false
+    t.string   "bio",             limit: 200
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
