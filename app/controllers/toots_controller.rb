@@ -1,6 +1,10 @@
 class TootsController < ApplicationController
   before_action :set_toot, only: [:show, :edit, :update, :destroy]
 
+  # Users must be signed in to create/edit/destroy Toots, but they are allowed
+  # to view existing Toots.
+  before_action :authorize, except: [:index, :show]
+
   # GET /toots
   def index
     @toots = Toot.all
