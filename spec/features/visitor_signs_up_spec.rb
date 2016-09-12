@@ -19,11 +19,6 @@ feature 'Visitor signs up' do
     expect_sign_up_failure
   end
 
-  scenario 'with a blank bio' do
-    attempt_sign_up_with bio: ''
-    expect_sign_up_failure
-  end
-
   scenario 'with a handle that is too long' do
     # Handles are limited to 32 characters
     attempt_sign_up_with handle: 'a'*33
@@ -31,8 +26,8 @@ feature 'Visitor signs up' do
   end
 
   scenario 'with a name that is too long' do
-    # Names are limited to 255 characters
-    attempt_sign_up_with name: 'a'*256
+    # Names are limited to 64 characters
+    attempt_sign_up_with name: 'a'*65
     expect_sign_up_failure
   end
 
