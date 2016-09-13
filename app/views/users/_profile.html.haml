@@ -3,11 +3,21 @@
     %span.user-name= @user.name
     .user-handle= @user.handle
     .user-bio= @user.bio
+    .user-counts
+      .user-counts-cell
+        %span.user-count-header Toots
+        %span.user-toots-count= @user.toots.count
+      .user-counts-cell
+        %span.user-count-header Following
+        %span.user-following-count= @user.following.count
+      .user-counts-cell
+        %span.user-count-header Followers
+        %span.user-followers-count= @user.followers.count
 
   .actions
     - if current_user&.following?(@user)
       = link_to 'Unfollow', unfollow_path(@user), class: 'btn btn-sm btn-primary', data: { method: :post }
-    - else
+    - elsif current_user != @user
       = link_to 'Follow', follow_path(@user), class: 'btn btn-sm btn-primary', data: { method: :post }
     - if @user.eql?(current_user)
       = link_to 'Edit', edit_user_path(@user), class: 'btn btn-sm btn-default'

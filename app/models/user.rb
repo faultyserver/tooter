@@ -14,6 +14,19 @@ class User < ApplicationRecord
     events
   end
 
+  def followers
+    subject_events.where(action: 'follow')
+  end
+
+  def following
+    events.where(action: 'follow')
+  end
+
+  def favorites
+    events.where(action: 'favorite')
+  end
+
+
   # Returns true if this User has favorited the given subject.
   def favorited? subject
     has_event? 'favorite', subject

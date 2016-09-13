@@ -1,6 +1,17 @@
 @mixin component {
-  margin: 20px 10px;
+  margin-top: 20px;
   border-radius: 4px;
   background-color: #fff;
   border: 1px solid #eee;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+
+  .component-header {
+    display: block;
+    font-size: $font-size-large;
+    font-weight: bold;
+  }
 }

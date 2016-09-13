@@ -1,7 +1,12 @@
-
 .row
   .col-md-4
     = render 'profile', user: @user
+
+    .user-followers
+      %span.component-header Followers
+      - @user.followers.each do |follow|
+        .follower
+          = link_to follow.user.handle, follow.user
 
   .col-md-8
     .toot-stream

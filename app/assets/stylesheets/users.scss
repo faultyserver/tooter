@@ -13,9 +13,33 @@
     .user-bio {
       margin-top: 8px;
     }
+
+    .user-counts {
+      display: flex;
+      margin-top: 6px;
+
+      .user-counts-cell {
+        flex-grow: 1;
+
+        .user-count-header {
+          display: block;
+          font-size: $font-size-small;
+          color: $text-muted;
+        }
+      }
+    }
   }
 
   .actions {
     margin-top: 12px;
+  }
+}
+
+.user-followers {
+  @include component;
+  padding: 12px;
+
+  .follower {
+    display: block;
   }
 }

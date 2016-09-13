@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # User following
   post  '/users/:id/follow'     => 'follows#create',  as: :follow
-  post  '/users/:id/unfollow'     => 'follows#destroy', as: :unfollow
+  post  '/users/:id/unfollow'   => 'follows#destroy', as: :unfollow
 
 
   # Action rendered at '/'
