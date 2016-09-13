@@ -1,26 +1,13 @@
 class TootsController < ApplicationController
-  before_action :set_toot, only: [:show, :edit, :update, :destroy]
+  before_action :set_toot, only: [:destroy]
 
   # Users must be signed in to create/edit/destroy Toots, but they are allowed
   # to view existing Toots.
-  before_action :authorize, except: [:index, :show]
-
-  # GET /toots
-  def index
-    @toots = Toot.all
-  end
-
-  # GET /toots/1
-  def show
-  end
+  before_action :authorize
 
   # GET /toots/new
   def new
     @toot = Toot.new
-  end
-
-  # GET /toots/1/edit
-  def edit
   end
 
   # POST /toots
@@ -31,15 +18,6 @@ class TootsController < ApplicationController
       redirect_to user_path(current_user), notice: 'Toot was successfully created.'
     else
       render :new
-    end
-  end
-
-  # PATCH/PUT /toots/1
-  def update
-    if @toot.update(toot_params)
-      redirect_to @toot, notice: 'Toot was successfully updated.'
-    else
-      render :edit
     end
   end
 
