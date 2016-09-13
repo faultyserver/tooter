@@ -11,10 +11,13 @@
  * It is generally better to create a new file per style scope.
  */
 
+@import "font-awesome";
+
 @import "./bootstrap_setup";
 @import "./mixins/component";
 @import "./toots";
 @import "./users";
+
 
 body {
   margin-top: 50px;

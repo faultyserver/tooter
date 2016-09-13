@@ -1,12 +1,14 @@
 class FavoritesController < ApplicationController
+  before_action :authorize
+
   # POST /toots/:id/favorite
   def create
     @event = Event.new(favorite_params)
 
     if @event.save
-      redirect_to @event.subject
+      redirect_back(fallback_location: @event.subject)
     else
-      redirect_to @event.subject, notice: "Could not favorite the #{@event.subject.class}"
+      redirect_back(fallback_location: @event.subject, notice: "Could not favorite the #{@event.subject.class}")
     end
   end
 
@@ -15,9 +17,9 @@ class FavoritesController < ApplicationController
     @event = Event.find_by(favorite_params)
 
     if @event.destroy
-      redirect_to @event.subject
+      redirect_back(fallback_location: @event.subject)
     else
-      redirect_to @event.subject, notice: "Could not unfavorite the #{@event.subject.class}"
+      redirect_back(fallback_location: @event.subject, notice: "Could not unfavorite the #{@event.subject.class}")
     end
   end
 

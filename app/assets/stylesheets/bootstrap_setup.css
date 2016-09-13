@@ -2,3 +2,8 @@ $font-size-base: 16px;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.btn.btn-blank {
+  background-color: inherit;
+}

@@ -1,7 +1,18 @@
-.toot
+.toot{ id: "toot-#{toot.id}" }
   .toot-header
     %span.toot-author= link_to toot.author.handle, toot.author
     %span.toot-created-at= time_ago_in_words(toot.created_at) + ' ago'
   .toot-content
     %span.toot-body= toot.body
   .toot-footer
+    .toot-footer-cell
+      - if user_has_favorited(toot)
+        = link_to unfavorite_path(toot), value: 'favorite', class: 'btn btn-blank btn-xs', data: { method: :post } do
+          %span.normal= fa_icon 'heart'
+          %span.hovered= fa_icon 'heart-o'
+      - else
+        = link_to favorite_path(toot), value: 'favorite', class: 'btn btn-blank btn-xs', data: { method: :post } do
+          %span.normal= fa_icon 'heart-o'
+          %span.hovered= fa_icon 'heart'
+      %span.toot-favorite-count
+        = toot.events.where(action: 'favorite').count

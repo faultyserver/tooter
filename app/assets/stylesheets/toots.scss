@@ -19,4 +19,25 @@
     }
     .toot-created-at { color: $gray-light; }
   }
+
+
+  .toot-footer {
+    a[value="favorite"] {
+      color: #f43693;
+
+      .normal   { display: inherit; }
+      .hovered  { display: none; }
+
+      &:hover {
+        .normal   { display: none; }
+        .hovered  { display: inherit; }
+      }
+    }
+
+    .toot-favorite-count {
+      font-size: $font-size-small;
+      color: $text-muted;
+    }
+  }
 }
+

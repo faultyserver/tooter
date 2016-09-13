@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
 
   # Toot favoriting
-  post  '/toots/:id/favorite'   => 'favorites#create'
-  post  '/toots/:id/unfavorite' => 'favorites#destroy'
+  post  '/toots/:id/favorite'   => 'favorites#create',  as: :favorite
+  post  '/toots/:id/unfavorite' => 'favorites#destroy', as: :unfavorite
 
 
   # Action rendered at '/'

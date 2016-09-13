@@ -3,8 +3,8 @@ require 'support/features/session_helpers.rb'
 feature 'Favoriting/Unfavoriting Toots' do
   include Features::SessionHelpers
 
-  let(:toot) { create(:toot) }
-  let(:user) { create(:user) }
+  let!(:toot) { create(:toot) }
+  let!(:user) { create(:user) }
 
   scenario 'while not signed in' do
     visit toots_path
@@ -39,15 +39,16 @@ feature 'Favoriting/Unfavoriting Toots' do
 
 
   def attempt_favorite toot
-    within("#toot-#{toot.id}") do
-      find("button[value=favorite]").click
-    end
+    find_by_id("toot-#{toot.id}").find("a[value=favorite]").click
   end
 
   def expect_favorited toot
-    expect(page).to have_css("#toot-#{toot.id} .favorited")
+    favorite_count = find_by_id("toot-#{toot.id}").find('.toot-favorite-count').text
+    expect(favorite_count).to eq('1')
   end
 
   def expect_unfavorited toot
+    favorite_count = find_by_id("toot-#{toot.id}").find('.toot-favorite-count').text
+    expect(favorite_count).to eq('0')
   end
 end
