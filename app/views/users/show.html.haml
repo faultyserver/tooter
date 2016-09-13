@@ -1,17 +1,17 @@
 .row
-  .col-md-4
+  .col-md-3
     = render 'profile', user: @user
 
+  .col-md-6
+    .event-stream
+      - @user.events.each do |event|
+        .event
+          = render_event event
+
+  .col-md-3
     .user-followers
       %span.component-header Followers
       - @user.followers.each do |follow|
         .follower
           = link_to follow.user.name, follow.user
           %small.text-muted= user_handle(follow.user)
-
-  .col-md-8
-    .event-stream
-      - @user.events.each do |event|
-        .event
-          = render_event event
-

@@ -1,0 +1,8 @@
+= simple_form_for User.new do |f|
+  = f.input :handle, label: false, placeholder: 'handle', input_html: { class: 'input-sm' }
+  = f.input :password, label: false, placeholder: 'password', input_html: { class: 'input-sm' }
+  = f.input :name, label: false, placeholder: 'name', input_html: { class: 'input-sm' }
+  = f.input :bio, as: :text, label: false, placeholder: 'bio', input_html: { class: 'input-sm' }
+
+  .actions
+    = f.button :submit, value: 'Sign Up!', class: 'btn btn-sm btn-primary'

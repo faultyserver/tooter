@@ -1,5 +1,13 @@
 .row
-  .col-md-6.col-md-offset-3
+  .col-md-3
+    - if current_user
+    - else
+      %h3 Sign in
+      = render 'sessions/inline_form'
+      %h3 Sign up
+      = render 'users/inline_form'
+
+  .col-md-6
     .event-stream
       - @events.each do |event|
         .event

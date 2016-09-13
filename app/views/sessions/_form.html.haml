@@ -1,0 +1,5 @@
+= simple_form_for User.new, url: login_path do |f|
+  = f.input :handle
+  = f.input :password
+
+  = f.button :submit, value: 'Login'
