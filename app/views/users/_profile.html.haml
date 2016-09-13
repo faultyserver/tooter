@@ -2,7 +2,7 @@
   .user
     %span.user-name= link_to @user.name, @user
     .user-handle= link_to user_handle(@user), @user
-    .user-bio= @user.bio
+    .user-bio= with_mentions(@user.bio)
     .user-counts
       .user-counts-cell
         %span.user-count-header Toots
