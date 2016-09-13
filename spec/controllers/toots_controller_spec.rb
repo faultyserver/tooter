@@ -27,6 +27,10 @@ describe TootsController, '#create' do
       it 'creates a new "toot" Event' do
         expect(Event.where(user: @user, action: 'toot').count).to eq(1)
       end
+
+      it 'redirects the user to their profile' do
+        expect(subject).to redirect_to(user_path(@user))
+      end
     end
   end
 end
@@ -57,6 +61,10 @@ describe TootsController, '#destroy' do
 
       it 'removes the appropriate "toot" Event' do
         expect(Event.where(user: @user, action: 'toot', subject: toot.id)).to be_empty
+      end
+
+      it 'redirects users to their profile' do
+        expect(subject).to redirect_to(user_path(@user))
       end
     end
   end

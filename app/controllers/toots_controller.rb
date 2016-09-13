@@ -28,7 +28,7 @@ class TootsController < ApplicationController
     @toot = Toot.new(toot_params)
 
     if @toot.save
-      redirect_to @toot, notice: 'Toot was successfully created.'
+      redirect_to user_path(current_user), notice: 'Toot was successfully created.'
     else
       render :new
     end
@@ -46,7 +46,7 @@ class TootsController < ApplicationController
   # DELETE /toots/1
   def destroy
     @toot.destroy
-    redirect_to toots_url, notice: 'Toot was successfully destroyed.'
+    redirect_to user_path(current_user), notice: 'Toot was successfully destroyed.'
   end
 
   private
