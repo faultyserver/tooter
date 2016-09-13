@@ -1,7 +1,7 @@
 .user-profile
   .user
-    %span.user-name= @user.name
-    .user-handle= user_handle(@user)
+    %span.user-name= link_to @user.name, @user
+    .user-handle= link_to user_handle(@user), @user
     .user-bio= @user.bio
     .user-counts
       .user-counts-cell

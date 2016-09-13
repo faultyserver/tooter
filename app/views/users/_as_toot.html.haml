@@ -6,6 +6,6 @@
           = link_to 'Unfollow', unfollow_path(user), class: 'btn btn-sm btn-primary', data: { method: :post }
         - elsif current_user != user
           = link_to 'Follow', follow_path(user), class: 'btn btn-sm btn-primary', data: { method: :post }
-    %span.user-name= user.name
-    .user-handle= user_handle(user)
+    %span.user-name= link_to user.name, user
+    .user-handle= link_to user_handle(user), user
     .user-bio= user.bio
