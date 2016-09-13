@@ -5,4 +5,12 @@ class Toot < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   validates_presence_of :body
+
+  after_create do
+    Event.create(user: author, action: 'toot', subject: self)
+  end
+
+  after_destroy do
+    Event.where(subject: self).delete_all
+  end
 end
