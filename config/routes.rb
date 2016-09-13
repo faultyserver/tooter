@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
 
   # Action rendered at '/'
-  root to: 'toots#index'
+  root to: 'events#index'
 end

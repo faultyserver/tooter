@@ -1,0 +1,6 @@
+.row
+  .col-md-6.col-md-offset-3
+    .event-stream
+      - @events.each do |event|
+        .event
+          = render_event event

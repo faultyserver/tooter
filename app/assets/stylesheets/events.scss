@@ -3,13 +3,14 @@
 
   .event {
     width: 100%;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border-bottom: 1px solid #eee;
     &:last-child { border-bottom: none; }
 
     .event-context {
       font-size: $font-size-small;
       color: $gray-light;
+      margin-bottom: 4px;
 
       a { color: $text-muted; }
     }

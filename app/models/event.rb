@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def self.stream_for_user user
-    Event.where(user: user).or(Event.where(subject: user))
+    followed_users = user.following.map(&:subject_id)
+    Event.where(user: followed_users).or(Event.where(subject: user)).includes(:subject)
   end
 end
