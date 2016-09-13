@@ -1,23 +1,15 @@
-.toot-stream {
-  @include component;
-}
-
 .toot {
-  width: 100%;
-  padding: 6px 12px;
-  border-bottom: 1px solid #eee;
-  &:last-child { border-bottom: none; }
-
   .toot-header {
-    font-size: $font-size-small;
     margin-bottom: 2px;
+    font-size: $font-size-small;
+    color: $text-muted;
 
-    .toot-author {
-      font-weight: 500;
+    a { color: $text-muted; }
 
-      a { color: $text-color; }
+    .toot-author, .toot-author a {
+      font-weight: bold;
+      color: $text-color;
     }
-    .toot-created-at { color: $gray-light; }
   }
 
 

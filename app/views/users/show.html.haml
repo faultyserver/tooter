@@ -6,10 +6,12 @@
       %span.component-header Followers
       - @user.followers.each do |follow|
         .follower
-          = link_to follow.user.handle, follow.user
+          = link_to follow.user.name, follow.user
+          %small.text-muted= user_handle(follow.user)
 
   .col-md-8
-    .toot-stream
-      - @user.toots.each do |toot|
-        = render 'toots/toot', toot: toot
+    .event-stream
+      - @user.events.each do |event|
+        .event
+          = render_event event
 

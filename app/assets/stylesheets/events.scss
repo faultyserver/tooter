@@ -1,0 +1,21 @@
+.event-stream {
+  @include component;
+
+  .event {
+    width: 100%;
+    padding: 6px 12px;
+    border-bottom: 1px solid #eee;
+    &:last-child { border-bottom: none; }
+
+    .event-context {
+      font-size: $font-size-small;
+      color: $gray-light;
+
+      a { color: $text-muted; }
+    }
+
+    .event-body {
+
+    }
+  }
+}

@@ -33,6 +33,14 @@
   .actions {
     margin-top: 12px;
   }
+
+  &.as-toot {
+    padding: 6px 12px;
+
+    .actions {
+      margin-top: 4px;
+    }
+  }
 }
 
 .user-followers {

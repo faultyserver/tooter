@@ -1,0 +1,10 @@
+.event-context
+  = link_to event.user.name, event.user
+  followed a user
+  &middot;
+  %small
+    = time_ago_in_words(event.created_at)
+    ago
+
+.event-body
+  = render 'users/as_toot', user: event.subject

@@ -6,11 +6,6 @@ class Toot < ApplicationRecord
 
   validates_presence_of :body
 
-  after_create do
-    Event.create(user: author, action: 'toot', subject: self)
-  end
-
-  after_destroy do
-    Event.where(subject: self).delete_all
-  end
+  after_create{  Event.create(user: author, action: 'toot', subject: self) }
+  after_destroy{ Event.where(subject: self).delete_all }
 end

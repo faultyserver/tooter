@@ -1,0 +1,10 @@
+.event-context
+  = link_to event.user.name, event.user
+  favorited a toot
+  &middot;
+  %small
+    = time_ago_in_words(event.created_at)
+    ago
+
+.event-body
+  = render 'toots/toot', toot: event.subject

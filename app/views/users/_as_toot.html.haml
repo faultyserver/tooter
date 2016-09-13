@@ -1,0 +1,11 @@
+.user-profile.as-toot
+  .user
+    .pull-right
+      .actions
+        - if current_user&.following?(user)
+          = link_to 'Unfollow', unfollow_path(user), class: 'btn btn-sm btn-primary', data: { method: :post }
+        - elsif current_user != user
+          = link_to 'Follow', follow_path(user), class: 'btn btn-sm btn-primary', data: { method: :post }
+    %span.user-name= user.name
+    .user-handle= user_handle(user)
+    .user-bio= user.bio

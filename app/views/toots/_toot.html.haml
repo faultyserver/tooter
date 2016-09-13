@@ -1,7 +1,10 @@
 .toot{ id: "toot-#{toot.id}" }
   .toot-header
-    %span.toot-author= link_to toot.author.handle, toot.author
-    %span.toot-created-at= time_ago_in_words(toot.created_at) + ' ago'
+    = link_to toot.author do
+      %span.toot-author= toot.author.name
+      %small.toot-author-handle= user_handle(toot.author)
+    &middot;
+    %small.toot-created-at= "#{time_ago_in_words(toot.created_at)} ago"
   .toot-content
     %span.toot-body= toot.body
   .toot-footer

@@ -1,5 +1,6 @@
 .row
   .col-md-6.col-md-offset-3
-    .toot-stream
+    .event-stream
       - @toots.each do |toot|
-        = render 'toot', toot: toot
+        .event
+          = render 'toot', toot: toot
