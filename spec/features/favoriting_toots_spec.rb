@@ -7,7 +7,7 @@ feature 'Favoriting/Unfavoriting Toots' do
   let!(:user) { create(:user) }
 
   scenario 'while not signed in' do
-    visit toots_path
+    visit root_path
     attempt_favorite(toot)
 
     expect_sign_in_request
@@ -19,14 +19,14 @@ feature 'Favoriting/Unfavoriting Toots' do
     end
 
     scenario 'without an existing favorite' do
-      visit toots_path
+      visit user_path(toot.author)
       attempt_favorite(toot)
 
       expect_favorited(toot)
     end
 
     scenario 'with an existing favorite' do
-      visit toots_path
+      visit user_path(toot.author)
       attempt_favorite(toot)
 
       # Favorite should act like a toggle: clicking the button again should
