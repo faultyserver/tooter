@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :subject_events, class_name: 'Event', as: :subject
 
   validates :handle,    length: { in: 1..32   }, allow_nil: false, uniqueness: true
+  validates :handle,    format: { with: /\A[a-zA-Z0-9_]+\z/i, message: 'Handles may only contain letters, numbers, and/or underscores' }
   validates :name,      length: { in: 1..64   }, allow_nil: false
   validates :bio,       length: { in: 0..200  }, allow_nil: true
   validates :password,  length: { minimum: 8  }, allow_nil: false

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user, aliases: [:author] do
-    handle    { Faker::Internet.user_name }
+    handle    { Faker::Internet.user_name.split(/\W/).first }
     name      { Faker::Name.name }
     password  { Faker::Internet.password }
     bio       { "#{Faker::Name.title} at #{Faker::Company.name}. #{Faker::Hacker.ingverb} #{Faker::Hacker.noun} with #{Faker::Name.name}" }

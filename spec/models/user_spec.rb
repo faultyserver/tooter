@@ -72,7 +72,19 @@ describe User, 'validations' do
       first = create(:user, handle: 'faulty')
       second = build(:user, handle: 'faulty')
 
-      expect(second.valid?).to be(false)
+      expect(second.valid?).to be_falsey
+    end
+
+    it 'must not contain spaces' do
+      user = build(:user, handle: 'bad handle')
+
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'may contain underscores' do
+      user = build(:user, handle: 'good_handle')
+
+      expect(user.valid?).to be_truthy
     end
   end
 
