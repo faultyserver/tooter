@@ -20,11 +20,11 @@ end
 
 
 describe Event, '.stream_for_user' do
-  it 'includes all events initiated by a User' do
+  it 'does not include events initiated by the user' do
     user = create(:user)
     events = create_list(:event, 5, user: user)
 
-    expect(Event.stream_for_user(user)).to match_array(events)
+    expect(Event.stream_for_user(user)).to be_empty
   end
 
   it 'includes events for which the User is a subject' do
@@ -40,6 +40,16 @@ describe Event, '.stream_for_user' do
     events = create_list(:event, 5, user: user1, subject: user2)
 
     expect(Event.stream_for_user(user2)).to match_array(events)
+  end
+
+  it 'includes events initiated by another user that the user follows' do
+    user1 = create(:user)
+    user2 = create(:user)
+    # user1 follows user2
+    create(:event, user: user1, action: 'follow', subject: user2)
+    event = create(:toot_event, user: user2)
+
+    expect(Event.stream_for_user(user1)).to include(event)
   end
 
   it 'only contains distinct events (no duplicates)' do
