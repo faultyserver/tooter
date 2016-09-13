@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   post  '/toots/:id/favorite'   => 'favorites#create',  as: :favorite
   post  '/toots/:id/unfavorite' => 'favorites#destroy', as: :unfavorite
 
+  # User following
+  post  '/users/:id/follow'     => 'follows#create',  as: :follow
+  post  '/users/:id/follow'     => 'follows#destroy', as: :unfollow
+
 
   # Action rendered at '/'
   root to: 'toots#index'
