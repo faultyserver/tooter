@@ -1,0 +1,13 @@
+.user-profile
+  .user
+    %span.user-name= @user.name
+    .user-handle= @user.handle
+    .user-bio= @user.bio
+
+  .actions
+    - if current_user&.following?(@user)
+      = link_to 'Unfollow', unfollow_path(@user), class: 'btn btn-sm btn-primary', data: { method: :post }
+    - else
+      = link_to 'Follow', follow_path(@user), class: 'btn btn-sm btn-primary', data: { method: :post }
+    - if @user.eql?(current_user)
+      = link_to 'Edit', edit_user_path(@user), class: 'btn btn-sm btn-default'

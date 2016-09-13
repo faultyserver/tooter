@@ -13,4 +13,19 @@ class User < ApplicationRecord
   def event_stream
     events
   end
+
+  # Returns true if this User has favorited the given subject.
+  def favorited? subject
+    has_event? 'favorite', subject
+  end
+
+  # Returns true if this User is currently following the given subject.
+  def following? subject
+    has_event? 'follow', subject
+  end
+
+  private
+    def has_event? action, subject
+      events.where(action: action, subject: subject).exists?
+    end
 end

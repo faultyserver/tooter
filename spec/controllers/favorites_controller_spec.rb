@@ -15,6 +15,7 @@ describe FavoritesController, '#create' do
   it 'requires a logged-in user' do
     toot = create(:toot)
     page = post :create, params: { id: toot.id }
+
     expect_login_request_for(page)
   end
 end
@@ -36,6 +37,7 @@ describe FavoritesController, '#destroy' do
   it 'requires a logged-in user' do
     toot = create(:toot)
     page = post :destroy, params: { id: toot.id }
+
     expect_login_request_for(page)
   end
 end

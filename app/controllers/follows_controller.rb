@@ -5,7 +5,9 @@ class FollowsController < ApplicationController
   def create
     @event = Event.new(follow_params)
 
-    if @event.save
+    if @event.subject == current_user
+      redirect_back(fallback_location: @event.subject, notice: "Cannot follow yourself")
+    elsif @event.save
       redirect_back(fallback_location: @event.subject)
     else
       redirect_back(fallback_location: @event.subject, notice: "Could not follow the #{@event.subject.class}")

@@ -34,19 +34,19 @@ feature 'Following/Unfollowing Users' do
 
   def attempt_follow
     visit user_path(followee)
-    click_button('Follow')
+    click_link('Follow')
   end
 
   def attempt_unfollow
     visit user_path(followee)
-    click_button('Unfollow')
+    click_link('Unfollow')
   end
 
   def expect_following
-    expect(page).to have_content('Following')
+    expect(page).to have_selector(:link_or_button, 'Unfollow')
   end
 
   def expect_not_following
-    expect(page).to have_content('Follow')
+    expect(page).to have_selector(:link_or_button, 'Follow')
   end
 end

@@ -1,4 +1,4 @@
-.user-box {
+.user-profile {
   @include component;
   padding: 12px;
 
@@ -13,5 +13,9 @@
     .user-bio {
       margin-top: 8px;
     }
+  }
+
+  .actions {
+    margin-top: 12px;
   }
 }
