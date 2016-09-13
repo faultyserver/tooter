@@ -11,6 +11,12 @@ describe FollowsController, '#create' do
 
     expect(Event.find_by(user: follower, action: 'follow', subject: followee)).to be_truthy
   end
+
+  it 'requires a logged-in user' do
+    followee = create(:user)
+    page = post :create, params: { id: followee.id }
+    expect_login_request_for(page)
+  end
 end
 
 describe FollowsController, '#destroy' do
@@ -25,5 +31,11 @@ describe FollowsController, '#destroy' do
     post :destroy, params: { id: followee.id }
 
     expect(Event.where(follow_params)).to be_empty
+  end
+
+  it 'requires a logged-in user' do
+    followee = create(:user)
+    page = post :create, params: { id: followee.id }
+    expect_login_request_for(page)
   end
 end

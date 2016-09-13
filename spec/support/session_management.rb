@@ -21,4 +21,10 @@ module SessionManagement
     session[:user_id] = nil
     user_id
   end
+
+  # Expect the given page to request that the user be signed in. This
+  # expectation is met if the user is redirected to the login page.
+  def expect_login_request_for page
+    expect(page).to redirect_to(login_path)
+  end
 end

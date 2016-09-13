@@ -11,6 +11,12 @@ describe FavoritesController, '#create' do
 
     expect(Event.find_by(user: user, action: 'favorite', subject: toot)).to be_truthy
   end
+
+  it 'requires a logged-in user' do
+    toot = create(:toot)
+    page = post :create, params: { id: toot.id }
+    expect_login_request_for(page)
+  end
 end
 
 describe FavoritesController, '#destroy' do
@@ -25,5 +31,11 @@ describe FavoritesController, '#destroy' do
     post :destroy, params: { id: toot.id }
 
     expect(Event.where(favorite_params)).to be_empty
+  end
+
+  it 'requires a logged-in user' do
+    toot = create(:toot)
+    page = post :destroy, params: { id: toot.id }
+    expect_login_request_for(page)
   end
 end
