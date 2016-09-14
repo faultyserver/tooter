@@ -8,8 +8,7 @@
         = render 'toots/inline_form'
 
       - @user.events.each do |event|
-        .event
-          = render_event event
+        = render_event event
 
   .col-md-3
     .user-followers
