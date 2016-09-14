@@ -3,7 +3,7 @@ A Twitter-like social platform. Toot, favorite, follow, and @mention all around.
 
 # Production
 
-The production version of the application is running at http://faultytooter.herokuapp.com. Feel free to use it. If you find a bug, please [create an issue for it](https://github.com/faultyserver/tooter/issues/new), or [submit a pull request with a fix](https://github.com/faultyserver/tooter/issues/pull/new).
+The production version of the application is running at http://faultytooter.herokuapp.com. Feel free to use it. If you find a bug, please [create an issue for it](https://github.com/faultyserver/tooter/issues/new), or [submit a pull request with a fix](https://github.com/faultyserver/tooter/pull/new).
 
 # Running Locally
 
