@@ -7,14 +7,14 @@ describe FollowsController, '#create' do
     follower = login
     followee = create(:user)
 
-    post :create, params: { id: followee.id }
+    post :create, params: { handle: followee.handle }
 
     expect(Event.find_by(user: follower, action: 'follow', subject: followee)).to be_truthy
   end
 
   it 'requires a logged-in user' do
     followee = create(:user)
-    page = post :create, params: { id: followee.id }
+    page = post :create, params: { handle: followee.handle }
 
     expect_login_request_for(page)
   end
@@ -22,7 +22,7 @@ describe FollowsController, '#create' do
   it 'does not allow self-following' do
     follower = login
 
-    post :create, params: { id: follower.id }
+    post :create, params: { handle: follower.handle }
 
     expect(Event.find_by(user: follower, action: 'follow', subject: follower)).to be_falsey
   end
@@ -37,14 +37,14 @@ describe FollowsController, '#destroy' do
     follow_params = { user: follower, action: 'follow', subject: followee }
     event = create(:event, **follow_params)
 
-    post :destroy, params: { id: followee.id }
+    post :destroy, params: { handle: followee.handle }
 
     expect(Event.where(follow_params)).to be_empty
   end
 
   it 'requires a logged-in user' do
     followee = create(:user)
-    page = post :create, params: { id: followee.id }
+    page = post :create, params: { handle: followee.handle }
 
     expect_login_request_for(page)
   end

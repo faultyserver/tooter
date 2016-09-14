@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  def to_param
+    handle
+  end
+
   def event_stream
     events
   end

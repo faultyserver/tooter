@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, except: [:index]
+  resources :users, except: [:index], param: :handle
   resources :toots, except: [:index, :show, :edit, :update]
 
   get   '/signup' => 'users#new', as: :sign_up
@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   post  '/toots/:id/unfavorite' => 'favorites#destroy', as: :unfavorite
 
   # User following
-  post  '/users/:id/follow'     => 'follows#create',  as: :follow
-  post  '/users/:id/unfollow'   => 'follows#destroy', as: :unfollow
+  post  '/users/:handle/follow'     => 'follows#create',  as: :follow
+  post  '/users/:handle/unfollow'   => 'follows#destroy', as: :unfollow
 
 
   # Action rendered at '/'

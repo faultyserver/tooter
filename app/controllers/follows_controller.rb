@@ -26,12 +26,15 @@ class FollowsController < ApplicationController
   end
 
   private
+    def followee
+      User.find_by(handle: params[:handle])
+    end
+
     def follow_params
       {
         user: current_user,
         action: 'follow',
-        subject_id: params[:id],
-        subject_type: 'User'
+        subject: followee
       }
     end
 end
