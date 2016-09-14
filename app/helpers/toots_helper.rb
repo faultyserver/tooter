@@ -5,13 +5,9 @@ module TootsHelper
 
   # Return the given string with any @mentions replaced with a link to that
   # user's profile.
-  # NOTE: This is *definitely* not the best way to do this. Ideally, user
-  # handles would make valid URLs, and no lookups would be necessary. A JS
-  # script could simply wrap @mentions with `a` tags using the handle.
   def with_mentions text
-    text.gsub(/@\w+/) do |handle|
-      puts handle
-      "<a class='at-mention' href=\"#{user_path(User.where(handle: handle[1..-1]).first)}\">#{handle}</a>"
+    text.gsub(/(@)(\w+)/) do |handle|
+      content_tag(:a, handle, class: 'at-mention', href: user_path(handle[1..-1]))
     end.html_safe
   end
 end
