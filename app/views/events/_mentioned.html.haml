@@ -1,6 +1,6 @@
 .event-context
-  = link_to event.initiator.name, event.initiator
-  favorited a toot
+  = link_to event.user.name, event.user
+  was mentioned
   &middot;
   %small
     = time_ago_in_words(event.created_at)

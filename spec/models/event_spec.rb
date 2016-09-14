@@ -1,7 +1,7 @@
 describe Event do
-  it 'belongs to a User' do
+  it 'belongs to a User by default' do
     event = create(:event)
-    expect(event.user).to be_a(User)
+    expect(event.initiator).to be_a(User)
   end
 
   it 'can have a Toot subject' do

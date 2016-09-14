@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :toots, foreign_key: 'author_id', inverse_of: :author
-  has_many :events, inverse_of: :user
+  has_many :events, as: :initiator
   has_many :subject_events, class_name: 'Event', as: :subject
 
   validates :handle,    length: { in: 1..32   }, allow_nil: false, uniqueness: true

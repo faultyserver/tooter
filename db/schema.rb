@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912183522) do
+ActiveRecord::Schema.define(version: 20160914032803) do
 
   create_table "events", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "initiator_id"
     t.string   "action"
     t.string   "subject_type"
     t.integer  "subject_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "initiator_type", default: "User", null: false
+    t.index ["initiator_id"], name: "index_events_on_initiator_id"
     t.index ["subject_type", "subject_id"], name: "index_events_on_subject_type_and_subject_id"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|

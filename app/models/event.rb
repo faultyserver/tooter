@@ -1,5 +1,11 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  # For the sake of simplicity, `initiator` can be considered `user`, since
+  # most events will follow this pattern. However, some events (such as
+  # mentions), are initiated by other objects (Toots), and so a polymorphic
+  # association is necessary.
+  belongs_to :initiator, polymorphic: true
+  alias_attribute :user, :initiator
+
   belongs_to :subject, polymorphic: true
 
   default_scope { order(created_at: :desc) }

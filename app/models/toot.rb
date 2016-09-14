@@ -6,6 +6,23 @@ class Toot < ApplicationRecord
 
   validates_presence_of :body
 
-  after_create{  Event.create(user: author, action: 'toot', subject: self) }
-  after_destroy{ Event.where(subject: self).delete_all }
+
+  after_create  :create_events
+  after_destroy :destroy_events
+
+  private
+    # Create Event instances for the Toot itself, as well as any mentions that
+    # the Toot contains
+    def create_events
+      # Create the toot Event
+      Event.create(user: author, action: 'toot', subject: self)
+      # Find any mentions contained in the Toot and create an event for each
+      body.scan(/(?:@)(\w+)/) do |handle|
+        Event.create(initiator: User.find_by(handle: handle), action: 'mentioned', subject: self)
+      end
+    end
+
+    def destroy_events
+      Event.where(subject: self).delete_all
+    end
 end
