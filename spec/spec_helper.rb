@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start 'rails'
+
 require 'factory_girl'
 require 'capybara'
 require 'capybara/dsl'
