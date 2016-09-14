@@ -4,6 +4,9 @@
 
   .col-md-6
     .event-stream
+      .event.new-toot
+        = render 'toots/inline_form'
+
       - @user.events.each do |event|
         .event
           = render_event event

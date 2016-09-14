@@ -9,6 +9,10 @@
 
   .col-md-6
     .event-stream
+      - if current_user
+        .event.new-toot
+          = render 'toots/inline_form'
+
       - @events.each do |event|
         .event
           = render_event event

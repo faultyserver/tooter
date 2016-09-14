@@ -1,0 +1,7 @@
+= simple_form_for Toot.new do |f|
+  = f.input :body, label: false, as: :text, placeholder: 'What\'s up?'
+
+  .pull-right
+    = f.button :submit, class: 'btn btn-primary'
+
+  .clearfix
